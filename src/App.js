@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Pokemons from "./components/Pokemons";
 import PokemonsHeader from "./components/PokemonsHeader";
+import PokemonTypes from "./components/PokemonTypes";
 import axios from "axios";
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     url_next: "https://pokeapi.co/api/v2/pokemon",
     url_prev: "https://pokeapi.co/api/v2/pokemon",
     pokemons: [],
+    types: [],
   };
 
   jumpNextPage = (e) => {
@@ -44,6 +46,16 @@ class App extends Component {
         url_prev: res.data.previous,
       })
     );
+    this.getPokemonTypes();
+  }
+
+  getPokemonTypes() {
+    console.log("getPokemontypes");
+    axios.get("https://pokeapi.co/api/v2/type").then((res) =>
+      this.setState({
+        types: res.data.results,
+      })
+    );
   }
 
   render() {
@@ -62,17 +74,18 @@ class App extends Component {
                       prevpage={this.jumpPrevPage}
                       nextpage={this.jumpNextPage}
                     />
-                    <Pokemons
-                      //getpokemons={this.getPokemons}
-                      pokemons={this.state.pokemons}
-                    />
+                    <Pokemons pokemons={this.state.pokemons} />
                   </React.Fragment>
                 )}
               />
               <Route
                 path="/types"
                 exact
-                render={(props) => <Pokemons pokemons={this.state.pokemons} />}
+                render={(props) => (
+                  <React.Fragment>
+                    <PokemonTypes pokemonTypes={this.state.types} />
+                  </React.Fragment>
+                )}
               />
             </Switch>
           </div>

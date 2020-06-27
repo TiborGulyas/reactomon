@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PokemonAbility from "./PokemonAbility";
 import axios from "axios";
 
 export class GetPokemonIndividual extends Component {
@@ -21,7 +20,6 @@ export class GetPokemonIndividual extends Component {
             String(key.ability.name),
           ],
         });
-        //this.state.currentPokemonAbilities.push(String(key.ability.name));
         console.log(this.state.currentPokemonAbilities);
         return this;
       });
@@ -29,10 +27,16 @@ export class GetPokemonIndividual extends Component {
   }
 
   render() {
-    //console.log(this.props.abilities);
-    return this.state.currentPokemonAbilities.map((ability) => (
-      <PokemonAbility pokemonAbility={ability} />
-    ));
+    let content = (
+      <React.Fragment>
+        <h1>{this.props.currentPokemonName}</h1>
+        {this.state.currentPokemonAbilities.map((ability) => (
+          <h2>{ability}</h2>
+        ))}
+      </React.Fragment>
+    );
+
+    return content;
   }
 }
 

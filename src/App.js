@@ -6,7 +6,6 @@ import Pokemons from "./components/Pokemons";
 
 import PokemonTypes from "./components/PokemonTypes";
 import GetPokemonIndividual from "./components/GetPokemonIndividual";
-import CurrentPokemonName from "./components/CurrentPokemonName";
 import split from "split-string";
 
 class App extends Component {
@@ -47,13 +46,11 @@ class App extends Component {
                 path="/pokemon/id"
                 render={(props) => (
                   <React.Fragment>
-                    <CurrentPokemonName
-                      currentPokemonName={this.state.currentPokemonName}
-                    />
                     <GetPokemonIndividual
                       id={
                         split(window.location.pathname, { separator: "/" })[3]
                       }
+                      currentPokemonName={this.state.currentPokemonName}
                     />
                   </React.Fragment>
                 )}

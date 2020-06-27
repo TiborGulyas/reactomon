@@ -4,10 +4,10 @@ export class PokemonsHeader extends Component {
   render() {
     return (
       <React.Fragment>
-        <button onClick={this.props.prevpage.bind(this, "test")}>
+        <button onClick={this.props.jumpPage.bind(this, this.props.prevURL)}>
           Previous Page
         </button>
-        <button onClick={this.props.nextpage.bind(this, "test")}>
+        <button onClick={this.props.jumpPage.bind(this, this.props.nextURL)}>
           Next Page
         </button>
       </React.Fragment>

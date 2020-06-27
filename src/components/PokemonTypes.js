@@ -1,28 +1,22 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export class PokemonTypes extends Component {
-  state = {
-    types: [],
-  };
+const PokemonTypes = (props) => {
+  const [types, setTypes] = useState([]);
 
-  componentDidMount() {
+  useEffect(() => {
     console.log("getPokemontypes");
-    axios.get("https://pokeapi.co/api/v2/type").then((res) =>
-      this.setState({
-        types: res.data.results,
-      })
-    );
-  }
+    axios
+      .get("https://pokeapi.co/api/v2/type")
+      .then((res) => setTypes(res.data.results));
+  }, []);
 
-  render() {
-    return this.state.types.map((pokemonType) => (
-      <div>
-        <h2>{pokemonType.name}</h2>
-        <h3>{pokemonType.url}</h3>
-      </div>
-    ));
-  }
-}
+  return types.map((pokemonType) => (
+    <div>
+      <h2>{pokemonType.name}</h2>
+      <h3>{pokemonType.url}</h3>
+    </div>
+  ));
+};
 
 export default PokemonTypes;

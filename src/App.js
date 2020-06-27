@@ -5,7 +5,10 @@ import Header from "./components/layout/Header";
 import Pokemons from "./components/Pokemons";
 import PokemonsHeader from "./components/PokemonsHeader";
 import PokemonTypes from "./components/PokemonTypes";
+import GetPokemonIndividual from "./components/GetPokemonIndividual";
+import GetPokemonIndividualName from "./components/GetPokemonIndividualName";
 import axios from "axios";
+import split from "split-string";
 
 class App extends Component {
   state = {
@@ -14,6 +17,8 @@ class App extends Component {
     url_prev: "https://pokeapi.co/api/v2/pokemon",
     pokemons: [],
     types: [],
+    currentPokemonAbilities: [],
+    currentPokemonName: "unknown",
   };
 
   jumpNextPage = (e) => {
@@ -58,6 +63,24 @@ class App extends Component {
     );
   }
 
+  getPokemonAbilitiesByID = (id, name) => {
+    //var id = split(window.location.href, { separator: "/" })[5];
+    console.log(id);
+    var url = "https://pokeapi.co/api/v2/pokemon/".concat(id);
+    console.log(url);
+    this.setState({ currentPokemonName: name });
+    axios.get(url).then((res) => {
+      res.data.abilities.map((key) => {
+        console.log(JSON.stringify(key.ability.name));
+        this.state.currentPokemonAbilities.push(String(key.ability.name));
+        console.log(this.state.currentPokemonAbilities);
+        return name;
+      });
+
+      //res.data.abilities.map((ability) => console.log(ability));
+    });
+  };
+
   render() {
     return (
       <Router>
@@ -74,7 +97,10 @@ class App extends Component {
                       prevpage={this.jumpPrevPage}
                       nextpage={this.jumpNextPage}
                     />
-                    <Pokemons pokemons={this.state.pokemons} />
+                    <Pokemons
+                      pokemons={this.state.pokemons}
+                      getSinglePokemon={this.getPokemonAbilitiesByID}
+                    />
                   </React.Fragment>
                 )}
               />
@@ -84,6 +110,21 @@ class App extends Component {
                 render={(props) => (
                   <React.Fragment>
                     <PokemonTypes pokemonTypes={this.state.types} />
+                  </React.Fragment>
+                )}
+              />
+              <Route
+                path="/pokemon/id"
+                id={split(window.location.pathname, { separator: "/" })[3]}
+                //pokemonAbilities={this.getPokemonAbilitiesByID(this.id)}
+                render={(props) => (
+                  <React.Fragment>
+                    <GetPokemonIndividualName
+                      currentPokemonName={this.state.currentPokemonName}
+                    />
+                    <GetPokemonIndividual
+                      abilities={this.state.currentPokemonAbilities}
+                    />
                   </React.Fragment>
                 )}
               />

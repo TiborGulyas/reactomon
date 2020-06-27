@@ -1,12 +1,22 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./PokemonItem.css";
+import split from "split-string";
 
 export class PokemonItem extends Component {
   render() {
+    const id = split(this.props.pokemon.url, { separator: "/" })[
+      split(this.props.pokemon.url, { separator: "/" }).length - 2
+    ];
+    const name = this.props.pokemon.name;
     return (
-      <React.Fragment>
-        <h2>{this.props.pokemon.name}</h2>
-        <h3>{this.props.pokemon.url}</h3>
-      </React.Fragment>
+      <Link
+        className="pokemons"
+        to={`/pokemon/id/${id}`}
+        onClick={this.props.getSinglePokemon.bind(this, id, name)}
+      >
+        {id}_{name};
+      </Link>
     );
   }
 }

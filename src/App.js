@@ -26,7 +26,12 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        <div
+          className="App"
+          style={{
+            backgroundColor: "lightblue",
+          }}
+        >
           <div className="Container">
             <Header />
             <Switch>

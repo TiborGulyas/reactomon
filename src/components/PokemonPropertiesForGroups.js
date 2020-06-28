@@ -10,8 +10,12 @@ import Button from "react-bootstrap/Button";
 export const PokemonProperties = (props) => {
   //console.log(props.pokemons);
   return props.pokemons.map((pokemon) => (
-    <div class="col-1 col-sm-2">
-      <Card className="text-center" style={{ width: "10rem", height: "16rem" }}>
+    <div class="col-1 col-sm-2 mt-5">
+      <Card
+        className="text-center bg-light"
+        style={{ width: "10rem", height: "16rem" }}
+        border="danger"
+      >
         <Card.Img
           variant="top"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${

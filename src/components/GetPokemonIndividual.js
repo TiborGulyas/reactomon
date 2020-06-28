@@ -21,14 +21,18 @@ const GetPokemonIndividual = (props) => {
 
   return (
     <React.Fragment>
-      <div class="d-flex justify-content-center">
-        <Card className="text-center" style={{ width: "12rem" }}>
+      <div class="d-flex justify-content-center mt-5 pb-5">
+        <Card
+          className="text-center"
+          style={{ width: "12rem" }}
+          border="danger"
+        >
           <Card.Img
             variant="top"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`}
           />
           <Card.Body>
-            <Card.Title class="font-weight-bolder">
+            <Card.Title class="font-weight-bolder bg-secondary text-white">
               {props.currentPokemonName}
             </Card.Title>
             <Card.Text>

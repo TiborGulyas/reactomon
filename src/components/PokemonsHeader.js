@@ -1,6 +1,7 @@
 import React from "react";
-import { ThemeProvider } from "styled-components";
-import Button from "../element/Button";
+//import { ThemeProvider } from "styled-components";
+//import Button from "../element/Button";
+import BootButton from "react-bootstrap/Button";
 
 const PokemonsHeader = (props) => {
   const theme = {
@@ -9,14 +10,21 @@ const PokemonsHeader = (props) => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Button onClick={props.jumpPage.bind(null, props.prevURL)}>
+    <React.Fragment>
+      <BootButton
+        variant="outline-secondary"
+        onClick={props.jumpPage.bind(null, props.prevURL)}
+      >
         Previous Page
-      </Button>
-      <Button onClick={props.jumpPage.bind(null, props.nextURL)} primary>
+      </BootButton>
+      <BootButton
+        variant="outline-secondary"
+        onClick={props.jumpPage.bind(null, props.nextURL)}
+        primary
+      >
         Next Page
-      </Button>
-    </ThemeProvider>
+      </BootButton>
+    </React.Fragment>
   );
 };
 

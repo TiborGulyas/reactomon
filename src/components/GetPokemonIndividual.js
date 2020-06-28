@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const GetPokemonIndividual = (props) => {
   const [currentPokemonAbilities, setCurrentPokemonAbilities] = useState([]);
@@ -8,20 +10,37 @@ const GetPokemonIndividual = (props) => {
     var url = "https://pokeapi.co/api/v2/pokemon/".concat(props.id);
     axios.get(url).then((res) => {
       const result = res.data.abilities;
-      const setOfAbilities = [];
       result.map((key) => {
-        setOfAbilities.push(key.ability.name);
+        setCurrentPokemonAbilities((prevCurrentPokemonAbilities) => [
+          ...prevCurrentPokemonAbilities,
+          key.ability.name,
+        ]);
       });
-      setCurrentPokemonAbilities(setOfAbilities);
     });
   }, []);
 
   return (
     <React.Fragment>
-      <h1>{props.currentPokemonName}</h1>
-      {currentPokemonAbilities.map((fg, index) => (
-        <h2>{fg}</h2>
-      ))}
+      <div class="d-flex justify-content-center">
+        <Card className="text-center" style={{ width: "12rem" }}>
+          <Card.Img
+            variant="top"
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.id}.png`}
+          />
+          <Card.Body>
+            <Card.Title class="font-weight-bolder">
+              {props.currentPokemonName}
+            </Card.Title>
+            <Card.Text>
+              <ListGroup>
+                {currentPokemonAbilities.map((fg, index) => (
+                  <ListGroup.Item>{fg}</ListGroup.Item>
+                ))}
+              </ListGroup>
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </div>
     </React.Fragment>
   );
 };

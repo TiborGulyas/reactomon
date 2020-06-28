@@ -10,10 +10,15 @@ import split from "split-string";
 class App extends Component {
   state = {
     currentPokemonName: "unknown",
+    currentPokemonPage: "https://pokeapi.co/api/v2/pokemon",
   };
 
   setCurrentPokemonName = (name) => {
     this.setState({ currentPokemonName: name });
+  };
+
+  setCurrentPokemonPage = (url) => {
+    this.setState({ currentPokemonPage: url });
   };
 
   //
@@ -32,6 +37,8 @@ class App extends Component {
                   <React.Fragment>
                     <Pokemons
                       setCurrentPokemonName={this.setCurrentPokemonName}
+                      currentPokemonPage={this.state.currentPokemonPage}
+                      setCurrentPokemonPage={this.setCurrentPokemonPage}
                     />
                   </React.Fragment>
                 )}

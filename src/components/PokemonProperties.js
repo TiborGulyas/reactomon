@@ -1,21 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import PokemonPropertiesForGroups from "./PokemonPropertiesForGroups";
 import "./PokemonProperties.css";
-import split from "split-string";
-//import { Img } from "react-image";
-//import { useTheme } from "styled-components";
-import CardColumns from "react-bootstrap/CardColumns";
 
 export const PokemonProperties = (props) => {
-  console.log(props.pokemons);
   return (
-    <CardColumns>
+    <div class="row">
       <PokemonPropertiesForGroups
         pokemons={props.pokemons}
         setCurrentPokemonName={props.setCurrentPokemonName}
       />
-    </CardColumns>
+    </div>
   );
 };
 

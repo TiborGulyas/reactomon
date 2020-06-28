@@ -5,7 +5,6 @@ const PokemonTypes = (props) => {
   const [types, setTypes] = useState([]);
 
   useEffect(() => {
-    console.log("getPokemontypes");
     axios
       .get("https://pokeapi.co/api/v2/type")
       .then((res) => setTypes(res.data.results));

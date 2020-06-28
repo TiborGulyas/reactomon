@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import PokemonProperties from "./PokemonProperties";
 import PokemonsHeader from "./PokemonsHeader";
 import axios from "axios";
+import { InfoProvider } from "./SharedContext";
 
 const Pokemons = (props) => {
   const [home_url, setHome_url] = useState("https://pokeapi.co/api/v2/pokemon");
@@ -42,17 +43,14 @@ const Pokemons = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <InfoProvider>
       <PokemonsHeader
         prevURL={url_prev}
         nextURL={url_next}
         jumpPage={jumpPage}
       />
-      <PokemonProperties
-        pokemons={pokemons}
-        currentPokemonName={props.currentPokemonName}
-      />
-    </React.Fragment>
+      <PokemonProperties pokemons={pokemons} />
+    </InfoProvider>
   );
 };
 

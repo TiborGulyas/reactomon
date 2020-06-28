@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { SharedContext } from "./SharedContext";
 
-const GetPokemonIndividual = (props) => {
+export const GetPokemonIndividual = (props) => {
   const [currentPokemonAbilities, setCurrentPokemonAbilities] = useState([]);
+  const { currentPokemonName } = useContext(SharedContext);
 
   useEffect(() => {
     console.log("abilities is running");
@@ -21,7 +23,7 @@ const GetPokemonIndividual = (props) => {
 
   return (
     <React.Fragment>
-      <h1>{props.currentPokemonName}</h1>
+      <h1>{currentPokemonName}</h1>
       {currentPokemonAbilities.map((fg, index) => (
         <h2>{fg}</h2>
       ))}

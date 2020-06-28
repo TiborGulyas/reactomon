@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { ThemeProvider } from "styled-components";
+import Button from "../element/Button";
 
 const PokemonsHeader = (props) => {
+  const theme = {
+    fontfamily: "Arial",
+    fontsize: "40px",
+  };
+
   return (
-    <React.Fragment>
-      <button onClick={props.jumpPage.bind(null, props.prevURL)}>
+    <ThemeProvider theme={theme}>
+      <Button onClick={props.jumpPage.bind(null, props.prevURL)}>
         Previous Page
-      </button>
-      <button onClick={props.jumpPage.bind(null, props.nextURL)}>
+      </Button>
+      <Button onClick={props.jumpPage.bind(null, props.nextURL)} primary>
         Next Page
-      </button>
-    </React.Fragment>
+      </Button>
+    </ThemeProvider>
   );
 };
 

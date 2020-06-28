@@ -3,17 +3,17 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Pokemons from "./components/Pokemons";
-
 import PokemonTypes from "./components/PokemonTypes";
 import GetPokemonIndividual from "./components/GetPokemonIndividual";
 import split from "split-string";
+import { InfoProvider } from "./components/SharedContext";
 
 class App extends Component {
   state = {
-    currentPokemonName: "unknown",
+    //currentPokemonName: "unknown",
   };
 
-  getCurrentPokemonName = (name) => {
+  setCurrentPokemonName = (name) => {
     this.setState({ currentPokemonName: name });
   };
 
@@ -29,7 +29,7 @@ class App extends Component {
                 path="/pokemons"
                 render={(props) => (
                   <React.Fragment>
-                    <Pokemons currentPokemonName={this.getCurrentPokemonName} />
+                    <Pokemons currentPokemonName={this.setCurrentPokemonName} />
                   </React.Fragment>
                 )}
               />
@@ -45,14 +45,14 @@ class App extends Component {
               <Route
                 path="/pokemon/id"
                 render={(props) => (
-                  <React.Fragment>
+                  <InfoProvider>
                     <GetPokemonIndividual
                       id={
                         split(window.location.pathname, { separator: "/" })[3]
                       }
-                      currentPokemonName={this.state.currentPokemonName}
+                      //currentPokemonName={this.state.currentPokemonName}
                     />
-                  </React.Fragment>
+                  </InfoProvider>
                 )}
               />
             </Switch>

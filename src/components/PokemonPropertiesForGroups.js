@@ -8,13 +8,14 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 export const PokemonProperties = (props) => {
-  //console.log(props.pokemons);
-  return props.pokemons.map((pokemon) => (
-    <div class="col-1 col-sm-2 mt-5">
+  console.log(props.pokemons);
+  return props.pokemons.map((pokemon, i) => (
+    <div className="col-1 col-sm-2 mt-5" key={i + "ppgdiv"}>
       <Card
         className="text-center bg-light"
         style={{ width: "10rem", height: "16rem" }}
         border="danger"
+        key={i + "ppgcard"}
       >
         <Card.Img
           variant="top"
@@ -23,10 +24,11 @@ export const PokemonProperties = (props) => {
               split(pokemon.url, { separator: "/" }).length - 2
             ]
           }.png`}
+          key={i + "ppgcardimg"}
         />
-        <Card.Body>
-          <Card.Title>{pokemon.name}</Card.Title>
-          <Button variant="primary">
+        <Card.Body key={i}>
+          <Card.Title key={i}>{pokemon.name}</Card.Title>
+          <Button variant="primary" key={i + "ppgcardbody"}>
             <Link
               className="pokemons"
               to={`/pokemon/id/${
@@ -35,6 +37,7 @@ export const PokemonProperties = (props) => {
                 ]
               }`}
               onClick={() => props.setCurrentPokemonName(pokemon.name)}
+              key={i + "ppglink"}
             >
               ABILITIES
             </Link>

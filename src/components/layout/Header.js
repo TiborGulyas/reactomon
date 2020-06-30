@@ -12,6 +12,10 @@ export default function Header() {
       |{" "}
       <Link style={linkStyle} to="/types">
         Types
+      </Link>{" "}
+      |{" "}
+      <Link style={linkStyle} to="/saved">
+        Saved
       </Link>
     </header>
   );

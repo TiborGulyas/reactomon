@@ -4,7 +4,7 @@ import BootButton from "react-bootstrap/Button";
 const PokemonsHeader = (props) => {
   return (
     <React.Fragment>
-      <div class="text-center">
+      <div className="text-center">
         <BootButton
           variant="outline-secondary"
           onClick={props.jumpPage.bind(null, props.prevURL)}
@@ -14,7 +14,6 @@ const PokemonsHeader = (props) => {
         <BootButton
           variant="outline-secondary"
           onClick={props.jumpPage.bind(null, props.nextURL)}
-          primary
         >
           Next Page
         </BootButton>
